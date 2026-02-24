@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل تكامل Tasker - Agenda</title>
+    <meta name="description" content="دليل شامل لإضافات Tasker في تطبيق Agenda لإدارة المواعيد - 5 إجراءات، 2 أحداث، 2 حالات">
+    <link rel="icon" type="image/png" href="../images/icon.png">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-brand">
+            <img src="../images/icon_round.png" alt="Agenda">
+            <span>Agenda</span>
+        </a>
+        <button class="nav-toggle" onclick="toggleNav()" aria-label="القائمة">&#9776;</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="index.html#features">المميزات</a></li>
+            <li><a href="index.html#widgets">الويدجت</a></li>
+            <li><a href="tasker-guide.html" class="active">دليل Tasker</a></li>
+            <li><a href="privacy.html">الخصوصية</a></li>
+            <li><a href="terms.html">الشروط</a></li>
+            <li><a href="contact.html">تواصل معنا</a></li>
+            <li><a href="../tasker-guide.html" class="lang-switch">English</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Tasker Guide -->
+<div class="legal-page">
+    <h1>دليل تكامل Tasker</h1>
+    <p class="date">دليل شامل لإضافات Tasker في تطبيق Agenda</p>
+
+    <!-- Info Box -->
+    <div class="info-box">
+        <p><strong>ملخص:</strong> يوفر تطبيق Agenda تسع (9) إضافات لتطبيق Tasker تتيح لك أتمتة كاملة لإدارة مواعيدك. تشمل هذه الإضافات إنشاء المواعيد وإكمالها وحذفها والاستعلام عنها وتبديل التنبيهات، بالإضافة إلى الاستجابة للأحداث ومراقبة الحالات لحظياً.</p>
+    </div>
+
+    <!-- Overview Table -->
+    <table class="overview-table">
+        <thead>
+            <tr>
+                <th>النوع</th>
+                <th>العدد</th>
+                <th>الوصف</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>الإجراءات (Actions)</td>
+                <td>5</td>
+                <td>تنفيذ عمليات على المواعيد</td>
+            </tr>
+            <tr>
+                <td>الأحداث (Events)</td>
+                <td>2</td>
+                <td>الاستجابة لمحفزات المواعيد</td>
+            </tr>
+            <tr>
+                <td>الحالات (States)</td>
+                <td>2</td>
+                <td>مراقبة حالة المواعيد لحظياً</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Table of Contents -->
+    <div class="guide-nav" id="toc">
+        <h3>محتويات الدليل</h3>
+        <ul>
+            <li><a href="#requirements">المتطلبات</a></li>
+            <li><a href="#actions">الإجراءات (Actions)</a></li>
+            <li><a href="#action-create">إنشاء موعد</a></li>
+            <li><a href="#action-complete">إكمال موعد</a></li>
+            <li><a href="#action-delete">حذف موعد</a></li>
+            <li><a href="#action-query">استعلام المواعيد</a></li>
+            <li><a href="#action-toggle">تبديل التنبيه</a></li>
+            <li><a href="#events">الأحداث (Events)</a></li>
+            <li><a href="#event-reminder">تنبيه موعد</a></li>
+            <li><a href="#event-completed">اكتمال موعد</a></li>
+            <li><a href="#states">الحالات (States)</a></li>
+            <li><a href="#state-has-now">يوجد مواعيد الآن</a></li>
+            <li><a href="#state-has-overdue">يوجد مواعيد متأخرة</a></li>
+            <li><a href="#reference">القيم المرجعية</a></li>
+            <li><a href="#examples">أمثلة عملية</a></li>
+            <li><a href="#troubleshooting">استكشاف الأخطاء</a></li>
+        </ul>
+    </div>
+
+    <!-- Requirements -->
+    <h2 id="requirements">المتطلبات</h2>
+    <ul>
+        <li>يجب تثبيت تطبيق Tasker بشكل منفصل من متجر Google Play.</li>
+        <li>إضافات Agenda تظهر تلقائياً في قائمة إضافات Tasker بعد تثبيت التطبيقين معاً.</li>
+    </ul>
+
+    <!-- ==================== ACTIONS ==================== -->
+    <div class="plugin-section" id="actions">
+        <h2><span class="plugin-type-badge badge-action">ACTION</span> الإجراءات (Actions)</h2>
+        <p>الإجراءات هي عمليات يمكنك تنفيذها على المواعيد من خلال Tasker. يوفر Agenda خمسة إجراءات مختلفة.</p>
+
+        <!-- Action 1: Create Appointment -->
+        <h3 id="action-create">1. إنشاء موعد (Create Appointment)</h3>
+        <p>ينشئ موعداً جديداً في تطبيق Agenda بالمعاملات المحددة. يمكنك تحديد العنوان والوصف والموقع والتاريخ والوقت والتصنيف والأولوية والتذكير ونمط التكرار.</p>
+
+        <h4>معاملات الإدخال:</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>المعامل</th>
+                    <th>النوع</th>
+                    <th>مطلوب</th>
+                    <th>القيمة الافتراضية</th>
+                    <th>الوصف</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>title</code></td>
+                    <td>نص</td>
+                    <td>نعم</td>
+                    <td>-</td>
+                    <td>عنوان الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>description</code></td>
+                    <td>نص</td>
+                    <td>لا</td>
+                    <td>فارغ</td>
+                    <td>وصف الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>location</code></td>
+                    <td>نص</td>
+                    <td>لا</td>
+                    <td>فارغ</td>
+                    <td>موقع الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>date</code></td>
+                    <td>نص</td>
+                    <td>لا</td>
+                    <td>اليوم+ساعة</td>
+                    <td>تاريخ الموعد بصيغة <code>yyyy-MM-dd</code></td>
+                </tr>
+                <tr>
+                    <td><code>time</code></td>
+                    <td>نص</td>
+                    <td>لا</td>
+                    <td>09:00</td>
+                    <td>وقت البداية بصيغة <code>HH:mm</code></td>
+                </tr>
+                <tr>
+                    <td><code>endTime</code></td>
+                    <td>نص</td>
+                    <td>لا</td>
+                    <td>-</td>
+                    <td>وقت النهاية بصيغة <code>HH:mm</code></td>
+                </tr>
+                <tr>
+                    <td><code>isAllDay</code></td>
+                    <td>منطقي</td>
+                    <td>لا</td>
+                    <td><code>false</code></td>
+                    <td>هل الموعد طوال اليوم</td>
+                </tr>
+                <tr>
+                    <td><code>category</code></td>
+                    <td>نص</td>
+                    <td>لا</td>
+                    <td><code>PERSONAL</code></td>
+                    <td>تصنيف الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>priority</code></td>
+                    <td>نص</td>
+                    <td>لا</td>
+                    <td><code>MEDIUM</code></td>
+                    <td>أولوية الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>reminderEnabled</code></td>
+                    <td>منطقي</td>
+                    <td>لا</td>
+                    <td><code>true</code></td>
+                    <td>تفعيل التذكير</td>
+                </tr>
+                <tr>
+                    <td><code>reminderTime</code></td>
+                    <td>نص</td>
+                    <td>لا</td>
+                    <td><code>FIFTEEN_MIN</code></td>
+                    <td>وقت التذكير قبل الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>notes</code></td>
+                    <td>نص</td>
+                    <td>لا</td>
+                    <td>فارغ</td>
+                    <td>ملاحظات إضافية</td>
+                </tr>
+                <tr>
+                    <td><code>repeatMode</code></td>
+                    <td>نص</td>
+                    <td>لا</td>
+                    <td><code>NONE</code></td>
+                    <td>نمط التكرار</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>متغيرات الإخراج:</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>المتغير</th>
+                    <th>النوع</th>
+                    <th>الوصف</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>%success</code></td>
+                    <td>منطقي</td>
+                    <td>هل نجحت العملية</td>
+                </tr>
+                <tr>
+                    <td><code>%appointment_id</code></td>
+                    <td>رقم</td>
+                    <td>معرّف الموعد المُنشأ</td>
+                </tr>
+                <tr>
+                    <td><code>%error</code></td>
+                    <td>نص</td>
+                    <td>رسالة الخطأ في حالة الفشل</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Action 2: Complete Appointment -->
+        <h3 id="action-complete">2. إكمال موعد (Complete Appointment)</h3>
+        <p>يُعلّم موعداً محدداً كمكتمل. يمكنك تحديد الموعد عبر المعرّف أو العنوان.</p>
+
+        <h4>معاملات الإدخال:</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>المعامل</th>
+                    <th>النوع</th>
+                    <th>مطلوب</th>
+                    <th>القيمة الافتراضية</th>
+                    <th>الوصف</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>appointmentId</code></td>
+                    <td>رقم</td>
+                    <td>لا*</td>
+                    <td>-</td>
+                    <td>معرّف الموعد المراد إكماله</td>
+                </tr>
+                <tr>
+                    <td><code>title</code></td>
+                    <td>نص</td>
+                    <td>لا*</td>
+                    <td>-</td>
+                    <td>عنوان الموعد للبحث عنه</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="info-box">
+            <p><strong>ملاحظة:</strong> يجب توفير واحد على الأقل من <code>appointmentId</code> أو <code>title</code>. عند إكمال الموعد، يتم إطلاق حدث اكتمال الموعد تلقائياً. كما يتم إنشاء النسخة التالية تلقائياً للمواعيد المتكررة.</p>
+        </div>
+
+        <h4>متغيرات الإخراج:</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>المتغير</th>
+                    <th>النوع</th>
+                    <th>الوصف</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>%success</code></td>
+                    <td>منطقي</td>
+                    <td>هل نجحت العملية</td>
+                </tr>
+                <tr>
+                    <td><code>%appointment_id</code></td>
+                    <td>رقم</td>
+                    <td>معرّف الموعد المُكتمل</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Action 3: Delete Appointment -->
+        <h3 id="action-delete">3. حذف موعد (Delete Appointment)</h3>
+        <p>يحذف موعداً محدداً نهائياً من التطبيق. يمكنك تحديد الموعد عبر المعرّف أو العنوان.</p>
+
+        <h4>معاملات الإدخال:</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>المعامل</th>
+                    <th>النوع</th>
+                    <th>مطلوب</th>
+                    <th>القيمة الافتراضية</th>
+                    <th>الوصف</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>appointmentId</code></td>
+                    <td>رقم</td>
+                    <td>لا*</td>
+                    <td>-</td>
+                    <td>معرّف الموعد المراد حذفه</td>
+                </tr>
+                <tr>
+                    <td><code>title</code></td>
+                    <td>نص</td>
+                    <td>لا*</td>
+                    <td>-</td>
+                    <td>عنوان الموعد للبحث عنه</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="info-box">
+            <p><strong>ملاحظة:</strong> يجب توفير واحد على الأقل من <code>appointmentId</code> أو <code>title</code>. عند حذف الموعد، يتم إلغاء جميع التنبيهات المعلقة المرتبطة به تلقائياً.</p>
+        </div>
+
+        <h4>متغيرات الإخراج:</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>المتغير</th>
+                    <th>النوع</th>
+                    <th>الوصف</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>%success</code></td>
+                    <td>منطقي</td>
+                    <td>هل نجحت العملية</td>
+                </tr>
+                <tr>
+                    <td><code>%appointment_id</code></td>
+                    <td>رقم</td>
+                    <td>معرّف الموعد المحذوف</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Action 4: Query Appointments -->
+        <h3 id="action-query">4. استعلام المواعيد (Query Appointments)</h3>
+        <p>يستعلم عن المواعيد حسب معايير مختلفة ويُرجع قائمة بالنتائج. يمكنك الاستعلام عن مواعيد اليوم أو الغد أو القادمة أو المتأخرة أو ضمن نطاق تاريخ محدد.</p>
+
+        <h4>معاملات الإدخال:</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>المعامل</th>
+                    <th>النوع</th>
+                    <th>مطلوب</th>
+                    <th>القيمة الافتراضية</th>
+                    <th>الوصف</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>queryType</code></td>
+                    <td>نص</td>
+                    <td>لا</td>
+                    <td><code>TODAY</code></td>
+                    <td>نوع الاستعلام</td>
+                </tr>
+                <tr>
+                    <td><code>startDate</code></td>
+                    <td>نص</td>
+                    <td>لا</td>
+                    <td>-</td>
+                    <td>تاريخ البداية بصيغة <code>yyyy-MM-dd</code> (لنوع DATE_RANGE)</td>
+                </tr>
+                <tr>
+                    <td><code>endDate</code></td>
+                    <td>نص</td>
+                    <td>لا</td>
+                    <td>-</td>
+                    <td>تاريخ النهاية بصيغة <code>yyyy-MM-dd</code> (لنوع DATE_RANGE)</td>
+                </tr>
+                <tr>
+                    <td><code>category</code></td>
+                    <td>نص</td>
+                    <td>لا</td>
+                    <td>-</td>
+                    <td>تصفية حسب التصنيف</td>
+                </tr>
+                <tr>
+                    <td><code>limit</code></td>
+                    <td>رقم</td>
+                    <td>لا</td>
+                    <td>-</td>
+                    <td>الحد الأقصى لعدد النتائج</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>أنواع الاستعلام:</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>القيمة</th>
+                    <th>الوصف</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>TODAY</code></td>
+                    <td>مواعيد اليوم</td>
+                </tr>
+                <tr>
+                    <td><code>TOMORROW</code></td>
+                    <td>مواعيد الغد</td>
+                </tr>
+                <tr>
+                    <td><code>UPCOMING</code></td>
+                    <td>المواعيد القادمة</td>
+                </tr>
+                <tr>
+                    <td><code>OVERDUE</code></td>
+                    <td>المواعيد المتأخرة</td>
+                </tr>
+                <tr>
+                    <td><code>DATE_RANGE</code></td>
+                    <td>مواعيد ضمن نطاق تاريخ محدد (يتطلب startDate و endDate)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>متغيرات الإخراج (لكل موعد):</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>المتغير</th>
+                    <th>النوع</th>
+                    <th>الوصف</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>%success</code></td>
+                    <td>منطقي</td>
+                    <td>هل نجح الاستعلام</td>
+                </tr>
+                <tr>
+                    <td><code>%count</code></td>
+                    <td>رقم</td>
+                    <td>عدد المواعيد المُرجعة</td>
+                </tr>
+                <tr>
+                    <td><code>%appointment_ids()</code></td>
+                    <td>مصفوفة</td>
+                    <td>معرّفات المواعيد</td>
+                </tr>
+                <tr>
+                    <td><code>%titles()</code></td>
+                    <td>مصفوفة</td>
+                    <td>عناوين المواعيد</td>
+                </tr>
+                <tr>
+                    <td><code>%dates()</code></td>
+                    <td>مصفوفة</td>
+                    <td>تواريخ المواعيد</td>
+                </tr>
+                <tr>
+                    <td><code>%times()</code></td>
+                    <td>مصفوفة</td>
+                    <td>أوقات المواعيد</td>
+                </tr>
+                <tr>
+                    <td><code>%categories()</code></td>
+                    <td>مصفوفة</td>
+                    <td>تصنيفات المواعيد</td>
+                </tr>
+                <tr>
+                    <td><code>%priorities()</code></td>
+                    <td>مصفوفة</td>
+                    <td>أولويات المواعيد</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Action 5: Toggle Reminder -->
+        <h3 id="action-toggle">5. تبديل التنبيه (Toggle Reminder)</h3>
+        <p>يُفعّل أو يُعطّل التنبيه لموعد محدد عبر معرّفه.</p>
+
+        <h4>معاملات الإدخال:</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>المعامل</th>
+                    <th>النوع</th>
+                    <th>مطلوب</th>
+                    <th>القيمة الافتراضية</th>
+                    <th>الوصف</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>appointmentId</code></td>
+                    <td>رقم</td>
+                    <td>نعم</td>
+                    <td>-</td>
+                    <td>معرّف الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>enabled</code></td>
+                    <td>منطقي</td>
+                    <td>لا</td>
+                    <td><code>true</code></td>
+                    <td>تفعيل (<code>true</code>) أو تعطيل (<code>false</code>) التنبيه</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>متغيرات الإخراج:</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>المتغير</th>
+                    <th>النوع</th>
+                    <th>الوصف</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>%success</code></td>
+                    <td>منطقي</td>
+                    <td>هل نجحت العملية</td>
+                </tr>
+                <tr>
+                    <td><code>%appointment_id</code></td>
+                    <td>رقم</td>
+                    <td>معرّف الموعد</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ==================== EVENTS ==================== -->
+    <div class="plugin-section events-section" id="events">
+        <h2><span class="plugin-type-badge badge-event">EVENT</span> الأحداث (Events)</h2>
+        <p>الأحداث هي محفزات يُطلقها Agenda عند حدوث شيء معين. يمكنك استخدامها في ملفات Tasker التعريفية (Profiles) لتشغيل مهام تلقائياً.</p>
+
+        <!-- Event 1: Appointment Reminder -->
+        <h3 id="event-reminder">1. تنبيه موعد (Appointment Reminder)</h3>
+        <p>يُطلق هذا الحدث عند عرض إشعار التذكير بموعد قادم. يمكنك استخدامه لتنفيذ إجراءات مخصصة عند كل تذكير.</p>
+
+        <h4>متى يُطلق:</h4>
+        <p>عند عرض إشعار التذكير للموعد في الوقت المحدد.</p>
+
+        <h4>متغيرات الإخراج:</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>المتغير</th>
+                    <th>النوع</th>
+                    <th>الوصف</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>%appointment_id</code></td>
+                    <td>رقم</td>
+                    <td>معرّف الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>%title</code></td>
+                    <td>نص</td>
+                    <td>عنوان الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>%description</code></td>
+                    <td>نص</td>
+                    <td>وصف الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>%date</code></td>
+                    <td>نص</td>
+                    <td>تاريخ الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>%time</code></td>
+                    <td>نص</td>
+                    <td>وقت الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>%category</code></td>
+                    <td>نص</td>
+                    <td>تصنيف الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>%priority</code></td>
+                    <td>نص</td>
+                    <td>أولوية الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>%location</code></td>
+                    <td>نص</td>
+                    <td>موقع الموعد</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Event 2: Appointment Completed -->
+        <h3 id="event-completed">2. اكتمال موعد (Appointment Completed)</h3>
+        <p>يُطلق هذا الحدث عند إكمال أي موعد، سواء من داخل التطبيق أو من الإشعار أو عبر إجراء Tasker.</p>
+
+        <h4>متى يُطلق:</h4>
+        <p>عند إكمال موعد من التطبيق، أو من زر الإكمال في الإشعار، أو عبر إجراء إكمال Tasker.</p>
+
+        <h4>متغيرات الإخراج:</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>المتغير</th>
+                    <th>النوع</th>
+                    <th>الوصف</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>%appointment_id</code></td>
+                    <td>رقم</td>
+                    <td>معرّف الموعد المكتمل</td>
+                </tr>
+                <tr>
+                    <td><code>%title</code></td>
+                    <td>نص</td>
+                    <td>عنوان الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>%description</code></td>
+                    <td>نص</td>
+                    <td>وصف الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>%date</code></td>
+                    <td>نص</td>
+                    <td>تاريخ الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>%time</code></td>
+                    <td>نص</td>
+                    <td>وقت الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>%category</code></td>
+                    <td>نص</td>
+                    <td>تصنيف الموعد</td>
+                </tr>
+                <tr>
+                    <td><code>%priority</code></td>
+                    <td>نص</td>
+                    <td>أولوية الموعد</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ==================== STATES ==================== -->
+    <div class="plugin-section states-section" id="states">
+        <h2><span class="plugin-type-badge badge-state">STATE</span> الحالات (States)</h2>
+        <p>الحالات هي ظروف مستمرة يراقبها Tasker. تكون الحالة إما نشطة أو غير نشطة، ويمكنك تشغيل مهام عند تغيّر الحالة.</p>
+
+        <!-- State 1: Has Appointments Now -->
+        <h3 id="state-has-now">1. يوجد مواعيد الآن (Has Appointments Now)</h3>
+        <p>تكون هذه الحالة نشطة عند وجود مواعيد نشطة في الوقت الحالي (أي مواعيد بدأت ولم تنتهِ بعد).</p>
+
+        <div class="info-box">
+            <p><strong>الإعداد:</strong> لا يتطلب أي إعداد. يُرجع <code>true</code> عند وجود مواعيد نشطة حالياً و <code>false</code> عند عدم وجودها.</p>
+        </div>
+
+        <!-- State 2: Has Overdue Appointments -->
+        <h3 id="state-has-overdue">2. يوجد مواعيد متأخرة (Has Overdue Appointments)</h3>
+        <p>تكون هذه الحالة نشطة عند وجود مواعيد متأخرة غير مكتملة (أي مواعيد تجاوز وقتها دون إكمالها).</p>
+
+        <div class="info-box">
+            <p><strong>الإعداد:</strong> لا يتطلب أي إعداد. يُرجع <code>true</code> عند وجود مواعيد متأخرة غير مكتملة و <code>false</code> عند عدم وجودها.</p>
+        </div>
+    </div>
+
+    <!-- ==================== REFERENCE VALUES ==================== -->
+    <h2 id="reference">القيم المرجعية</h2>
+    <p>الجداول التالية توضح القيم المقبولة لمعاملات الإضافات المختلفة.</p>
+
+    <h3>التصنيفات (Categories)</h3>
+    <table class="param-table">
+        <thead>
+            <tr>
+                <th>القيمة</th>
+                <th>الوصف</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>WORK</code></td>
+                <td>عمل</td>
+            </tr>
+            <tr>
+                <td><code>PERSONAL</code></td>
+                <td>شخصي</td>
+            </tr>
+            <tr>
+                <td><code>HEALTH</code></td>
+                <td>صحة</td>
+            </tr>
+            <tr>
+                <td><code>MEETING</code></td>
+                <td>اجتماع</td>
+            </tr>
+            <tr>
+                <td><code>FAMILY</code></td>
+                <td>عائلة</td>
+            </tr>
+            <tr>
+                <td><code>EDUCATION</code></td>
+                <td>تعليم</td>
+            </tr>
+            <tr>
+                <td><code>FINANCE</code></td>
+                <td>مالية</td>
+            </tr>
+            <tr>
+                <td><code>OTHER</code></td>
+                <td>أخرى</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>الأولويات (Priorities)</h3>
+    <table class="param-table">
+        <thead>
+            <tr>
+                <th>القيمة</th>
+                <th>الوصف</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>LOW</code></td>
+                <td>منخفضة</td>
+            </tr>
+            <tr>
+                <td><code>MEDIUM</code></td>
+                <td>عادية</td>
+            </tr>
+            <tr>
+                <td><code>HIGH</code></td>
+                <td>عالية</td>
+            </tr>
+            <tr>
+                <td><code>URGENT</code></td>
+                <td>عاجل</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>أوقات التذكير (Reminder Times)</h3>
+    <table class="param-table">
+        <thead>
+            <tr>
+                <th>القيمة</th>
+                <th>الوصف</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>FIVE_MIN</code></td>
+                <td>5 دقائق</td>
+            </tr>
+            <tr>
+                <td><code>TEN_MIN</code></td>
+                <td>10 دقائق</td>
+            </tr>
+            <tr>
+                <td><code>FIFTEEN_MIN</code></td>
+                <td>15 دقيقة</td>
+            </tr>
+            <tr>
+                <td><code>THIRTY_MIN</code></td>
+                <td>30 دقيقة</td>
+            </tr>
+            <tr>
+                <td><code>ONE_HOUR</code></td>
+                <td>ساعة</td>
+            </tr>
+            <tr>
+                <td><code>TWO_HOURS</code></td>
+                <td>ساعتين</td>
+            </tr>
+            <tr>
+                <td><code>ONE_DAY</code></td>
+                <td>يوم</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>أنماط التكرار (Repeat Modes)</h3>
+    <table class="param-table">
+        <thead>
+            <tr>
+                <th>القيمة</th>
+                <th>الوصف</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>NONE</code></td>
+                <td>بدون تكرار</td>
+            </tr>
+            <tr>
+                <td><code>DAILY</code></td>
+                <td>يومي</td>
+            </tr>
+            <tr>
+                <td><code>WEEKLY</code></td>
+                <td>أسبوعي</td>
+            </tr>
+            <tr>
+                <td><code>MONTHLY</code></td>
+                <td>شهري</td>
+            </tr>
+            <tr>
+                <td><code>YEARLY</code></td>
+                <td>سنوي</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== EXAMPLES ==================== -->
+    <h2 id="examples">أمثلة عملية</h2>
+    <p>فيما يلي عشرة أمثلة عملية توضح كيفية استخدام إضافات Agenda مع Tasker لأتمتة مختلف السيناريوهات.</p>
+
+    <!-- Example 1 -->
+    <div class="example-card">
+        <h4>1. إنشاء اجتماعات يومية تلقائياً</h4>
+        <p class="goal"><strong>الهدف:</strong> إنشاء موعد اجتماع فريق العمل تلقائياً كل يوم أحد في الساعة 8 مساءً.</p>
+        <p><strong>الملف التعريفي:</strong> الوقت &rarr; كل أحد الساعة 20:00</p>
+        <p><strong>المهمة:</strong></p>
+        <div class="code-block">Profile: Weekly Team Meeting
+    Time: Every Sunday at 20:00
+
+Enter Task: Create Meeting
+    A1: Agenda - Create Appointment
+        title: "اجتماع فريق العمل"
+        description: "اجتماع أسبوعي لمراجعة المهام"
+        category: MEETING
+        priority: HIGH
+        date: %DATE
+        time: "20:00"
+        endTime: "21:00"
+        reminderTime: THIRTY_MIN
+        location: "قاعة الاجتماعات"</div>
+    </div>
+
+    <!-- Example 2 -->
+    <div class="example-card">
+        <h4>2. إشعار ذكي عند الوصول للعمل</h4>
+        <p class="goal"><strong>الهدف:</strong> عند الاتصال بشبكة WiFi الخاصة بالعمل، يتم استعلام مواعيد اليوم وعرض ملخص.</p>
+        <p><strong>الملف التعريفي:</strong> الحالة &rarr; اتصال WiFi بشبكة العمل</p>
+        <p><strong>المهمة:</strong></p>
+        <div class="code-block">Profile: Work Arrival Briefing
+    State: Wifi Connected [SSID: WorkNetwork]
+
+Enter Task: Show Today Summary
+    A1: Agenda - Query Appointments
+        queryType: TODAY
+        category: WORK
+
+    A2: If %count > 0
+        A3: Notify
+            Title: "مواعيد العمل اليوم"
+            Text: "لديك %count موعد عمل اليوم. الأول: %titles(1) الساعة %times(1)"
+            Icon: calendar
+    A4: End If</div>
+    </div>
+
+    <!-- Example 3 -->
+    <div class="example-card">
+        <h4>3. إكمال المواعيد المتأخرة تلقائياً</h4>
+        <p class="goal"><strong>الهدف:</strong> كل ليلة الساعة 11 مساءً، يتم البحث عن المواعيد المتأخرة وإكمالها تلقائياً.</p>
+        <p><strong>الملف التعريفي:</strong> الوقت &rarr; كل يوم الساعة 23:00</p>
+        <p><strong>المهمة:</strong></p>
+        <div class="code-block">Profile: Auto Complete Overdue
+    Time: Every Day at 23:00
+
+Enter Task: Complete Overdue
+    A1: Agenda - Query Appointments
+        queryType: OVERDUE
+
+    A2: For %id In %appointment_ids()
+        A3: Agenda - Complete Appointment
+            appointmentId: %id
+    A4: End For
+
+    A5: If %count > 0
+        A6: Notify
+            Title: "تم إكمال المواعيد المتأخرة"
+            Text: "تم إكمال %count موعد متأخر تلقائياً"
+    A7: End If</div>
+    </div>
+
+    <!-- Example 4 -->
+    <div class="example-card">
+        <h4>4. تنبيه اجتماع بالصوت</h4>
+        <p class="goal"><strong>الهدف:</strong> عند تذكير موعد من تصنيف "اجتماع"، يتم نطق العنوان والوقت بصوت عالٍ باستخدام TTS.</p>
+        <p><strong>الملف التعريفي:</strong> الحدث &rarr; تنبيه موعد من Agenda</p>
+        <p><strong>المهمة:</strong></p>
+        <div class="code-block">Profile: Voice Meeting Alert
+    Event: Agenda - Appointment Reminder
+
+Enter Task: Speak Meeting
+    A1: If %category eq MEETING
+        A2: Say
+            Text: "تذكير: لديك اجتماع %title الساعة %time"
+            Engine: Google TTS
+            Stream: Notification
+    A3: Else
+        A4: Say
+            Text: "تذكير: %title الساعة %time"
+            Engine: Google TTS
+            Stream: Notification
+    A5: End If</div>
+    </div>
+
+    <!-- Example 5 -->
+    <div class="example-card">
+        <h4>5. احتفال عند إكمال موعد</h4>
+        <p class="goal"><strong>الهدف:</strong> عند إكمال أي موعد، يتم تشغيل صوت احتفالي وعرض إشعار تحفيزي.</p>
+        <p><strong>الملف التعريفي:</strong> الحدث &rarr; اكتمال موعد من Agenda</p>
+        <p><strong>المهمة:</strong></p>
+        <div class="code-block">Profile: Celebrate Completion
+    Event: Agenda - Appointment Completed
+
+Enter Task: Celebrate
+    A1: Play Ringtone
+        Type: Notification
+        Sound: Achievement
+
+    A2: Notify
+        Title: "أحسنت! تم إكمال الموعد"
+        Text: "لقد أكملت: %title - استمر في الإنجاز!"
+        Icon: check_circle
+        Priority: High
+
+    A3: Wait
+        Seconds: 3
+
+    A4: Notify Cancel
+        Title: "أحسنت! تم إكمال الموعد"</div>
+    </div>
+
+    <!-- Example 6 -->
+    <div class="example-card">
+        <h4>6. عدم الإزعاج أثناء المواعيد</h4>
+        <p class="goal"><strong>الهدف:</strong> تفعيل وضع عدم الإزعاج تلقائياً عند وجود مواعيد نشطة حالياً، وإيقافه عند انتهائها.</p>
+        <p><strong>الملف التعريفي:</strong> الحالة &rarr; يوجد مواعيد الآن من Agenda</p>
+        <p><strong>المهمة:</strong></p>
+        <div class="code-block">Profile: DND During Appointments
+    State: Agenda - Has Appointments Now
+
+Enter Task: Enable DND
+    A1: Do Not Disturb
+        Mode: Priority Only
+
+    A2: Notify
+        Title: "وضع عدم الإزعاج"
+        Text: "تم تفعيل عدم الإزعاج - لديك موعد الآن"
+
+Exit Task: Disable DND
+    A1: Do Not Disturb
+        Mode: Off
+
+    A2: Notify
+        Title: "انتهى وقت الموعد"
+        Text: "تم إيقاف وضع عدم الإزعاج"</div>
+    </div>
+
+    <!-- Example 7 -->
+    <div class="example-card">
+        <h4>7. تنبيه متكرر للمواعيد المتأخرة</h4>
+        <p class="goal"><strong>الهدف:</strong> عند وجود مواعيد متأخرة، يتم عرض إشعار تنبيهي متكرر كل 30 دقيقة حتى يتم إكمالها.</p>
+        <p><strong>الملف التعريفي:</strong> الحالة &rarr; يوجد مواعيد متأخرة من Agenda</p>
+        <p><strong>المهمة:</strong></p>
+        <div class="code-block">Profile: Overdue Nagging
+    State: Agenda - Has Overdue Appointments
+
+Enter Task: Nag About Overdue
+    A1: Agenda - Query Appointments
+        queryType: OVERDUE
+
+    A2: Notify
+        Title: "لديك %count موعد متأخر!"
+        Text: "الموعد الأول: %titles(1) - أكمله الآن"
+        Icon: warning
+        Priority: Max
+
+    A3: Wait
+        Minutes: 30
+
+    A4: Goto
+        Number: 1
+
+Exit Task: Stop Nagging
+    A1: Notify Cancel
+        Title: "لديك %count موعد متأخر!"</div>
+    </div>
+
+    <!-- Example 8 -->
+    <div class="example-card">
+        <h4>8. إنشاء موعد بالصوت</h4>
+        <p class="goal"><strong>الهدف:</strong> استخدام الإدخال الصوتي لإنشاء موعد جديد بسرعة عبر الأمر الصوتي.</p>
+        <p><strong>الملف التعريفي:</strong> الاختصار &rarr; أيقونة على الشاشة الرئيسية</p>
+        <p><strong>المهمة:</strong></p>
+        <div class="code-block">Task: Voice Create Appointment
+    A1: Say
+        Text: "ما عنوان الموعد؟"
+        Engine: Google TTS
+
+    A2: Get Voice
+        Title: "عنوان الموعد"
+        Language: ar
+
+    A3: Variable Set
+        Name: %voice_title
+        To: %VOICE
+
+    A4: Say
+        Text: "في أي ساعة؟ مثال: 14:30"
+        Engine: Google TTS
+
+    A5: Get Voice
+        Title: "وقت الموعد"
+        Language: ar
+
+    A6: Variable Set
+        Name: %voice_time
+        To: %VOICE
+
+    A7: Agenda - Create Appointment
+        title: %voice_title
+        time: %voice_time
+        category: PERSONAL
+        priority: MEDIUM
+
+    A8: If %success eq true
+        A9: Say
+            Text: "تم إنشاء الموعد: %voice_title"
+    A10: End If</div>
+    </div>
+
+    <!-- Example 9 -->
+    <div class="example-card">
+        <h4>9. تقرير أسبوعي</h4>
+        <p class="goal"><strong>الهدف:</strong> كل يوم جمعة الساعة 6 مساءً، يتم إنشاء تقرير بمواعيد الأسبوع القادم وإرساله.</p>
+        <p><strong>الملف التعريفي:</strong> الوقت &rarr; كل جمعة الساعة 18:00</p>
+        <p><strong>المهمة:</strong></p>
+        <div class="code-block">Profile: Weekly Report
+    Time: Every Friday at 18:00
+
+Enter Task: Generate Report
+    A1: Variable Set
+        Name: %start
+        To: %DATE
+
+    A2: Variable Add
+        Name: %end_offset
+        Value: 7
+
+    A3: Agenda - Query Appointments
+        queryType: DATE_RANGE
+        startDate: %start
+        endDate: %end_date
+
+    A4: Variable Set
+        Name: %report
+        To: "تقرير الأسبوع القادم:\n"
+
+    A5: For %i From 1 To %count
+        A6: Variable Set
+            Name: %report
+            To: "%report\n- %titles(%i) | %dates(%i) الساعة %times(%i)"
+    A7: End For
+
+    A8: Notify
+        Title: "تقرير الأسبوع القادم"
+        Text: "%report"
+        Icon: assignment
+        Priority: High</div>
+    </div>
+
+    <!-- Example 10 -->
+    <div class="example-card">
+        <h4>10. كتم التنبيهات حسب الموقع</h4>
+        <p class="goal"><strong>الهدف:</strong> عند الاتصال بسماعة Bluetooth محددة (مثلاً في السيارة)، يتم تعطيل التنبيهات لجميع مواعيد اليوم.</p>
+        <p><strong>الملف التعريفي:</strong> الحالة &rarr; اتصال Bluetooth بجهاز محدد</p>
+        <p><strong>المهمة:</strong></p>
+        <div class="code-block">Profile: Mute Reminders While Driving
+    State: BT Connected [Name: Car_Speaker]
+
+Enter Task: Disable Reminders
+    A1: Agenda - Query Appointments
+        queryType: TODAY
+
+    A2: For %id In %appointment_ids()
+        A3: Agenda - Toggle Reminder
+            appointmentId: %id
+            enabled: false
+    A4: End For
+
+    A5: Notify
+        Title: "تم كتم التنبيهات"
+        Text: "تم تعطيل تنبيهات %count موعد أثناء القيادة"
+
+Exit Task: Enable Reminders
+    A1: Agenda - Query Appointments
+        queryType: TODAY
+
+    A2: For %id In %appointment_ids()
+        A3: Agenda - Toggle Reminder
+            appointmentId: %id
+            enabled: true
+    A4: End For
+
+    A5: Notify
+        Title: "تم تفعيل التنبيهات"
+        Text: "تم إعادة تفعيل تنبيهات مواعيد اليوم"</div>
+    </div>
+
+    <!-- ==================== TROUBLESHOOTING ==================== -->
+    <h2 id="troubleshooting">استكشاف الأخطاء</h2>
+
+    <h3>الإضافات لا تظهر في Tasker</h3>
+    <p>تأكد من تثبيت كل من تطبيق Agenda وتطبيق Tasker على جهازك. أعد تشغيل Tasker بعد تثبيت Agenda. إذا استمرت المشكلة، أعد تشغيل الجهاز.</p>
+
+    <h3>الإجراءات تفشل</h3>
+    <p>تحقق من المعاملات المطلوبة لكل إجراء. تأكد من أن القيم المُدخلة صحيحة (مثل صيغة التاريخ <code>yyyy-MM-dd</code> وصيغة الوقت <code>HH:mm</code>). راجع متغير <code>%err</code> لمعرفة سبب الخطأ.</p>
+
+    <h3>الأحداث لا تُطلق</h3>
+    <p>تأكد من أن تطبيق Tasker يعمل في الخلفية ولم يتم إيقافه بواسطة النظام. قم بإيقاف تحسين البطارية لكل من Tasker و Agenda. تأكد من السماح لكلا التطبيقين بالعمل في الخلفية في إعدادات الجهاز.</p>
+
+    <h3>الحالات لا تتحدث</h3>
+    <p>أعد تشغيل مراقبة Tasker من إعدادات التطبيق. تأكد من أن Tasker يملك الصلاحيات اللازمة. جرّب إعادة إنشاء الملف التعريفي (Profile) الذي يستخدم الحالة.</p>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <h3>Agenda</h3>
+            <p>تطبيق إدارة المواعيد الذكي. بياناتك محفوظة محلياً على جهازك فقط.</p>
+        </div>
+        <div>
+            <h4>التطبيق</h4>
+            <ul class="footer-links">
+                <li><a href="index.html#features">المميزات</a></li>
+                <li><a href="index.html#widgets">الويدجت</a></li>
+                <li><a href="#">Google Play</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>قانوني</h4>
+            <ul class="footer-links">
+                <li><a href="privacy.html">سياسة الخصوصية</a></li>
+                <li><a href="terms.html">شروط الاستخدام</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>تواصل</h4>
+            <ul class="footer-links">
+                <li><a href="mailto:android@aldaghir.com">android@aldaghir.com</a></li>
+                <li><a href="contact.html">صفحة التواصل</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Agenda. جميع الحقوق محفوظة.</span>
+        <span>صنع بـ &#10084;</span>
+    </div>
+</footer>
+
+<script>
+function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+}
+window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('navbar');
+    navbar.classList.toggle('scrolled', window.scrollY > 10);
+});
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+</script>
+
+</body>
+</html>

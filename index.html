@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda - تطبيق إدارة المواعيد الذكي</title>
-    <meta name="description" content="تطبيق Agenda لإدارة المواعيد والجدول الزمني بذكاء. يدعم التقويم الهجري والميلادي، التنبيهات الذكية، الويدجت، والمزيد.">
-    <meta name="keywords" content="agenda, مواعيد, تقويم, هجري, تطبيق أندرويد, إدارة مواعيد">
+    <title>Agenda - Smart Appointment Manager</title>
+    <meta name="description" content="Agenda helps you manage your appointments and schedule smartly. Supports Hijri and Gregorian calendars, smart notifications, widgets, and more.">
+    <meta name="keywords" content="agenda, appointments, calendar, hijri, android app, appointment manager">
     <link rel="icon" type="image/png" href="images/icon.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -18,14 +18,16 @@
             <img src="images/icon_round.png" alt="Agenda">
             <span>Agenda</span>
         </a>
-        <button class="nav-toggle" onclick="toggleNav()" aria-label="القائمة">&#9776;</button>
+        <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu">&#9776;</button>
         <ul class="nav-links" id="navLinks">
-            <li><a href="index.html" class="active">الرئيسية</a></li>
-            <li><a href="#features">المميزات</a></li>
-            <li><a href="#widgets">الويدجت</a></li>
-            <li><a href="privacy.html">الخصوصية</a></li>
-            <li><a href="terms.html">الشروط</a></li>
-            <li><a href="contact.html">تواصل معنا</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#widgets">Widgets</a></li>
+            <li><a href="tasker-guide.html">Tasker Guide</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="ar/index.html" class="lang-switch">العربية</a></li>
         </ul>
     </div>
 </nav>
@@ -34,14 +36,14 @@
 <section class="hero">
     <div class="hero-content">
         <img src="images/icon_round.png" alt="Agenda" class="hero-icon">
-        <h1>نظّم مواعيدك بـ<span>ذكاء</span></h1>
-        <p>تطبيق Agenda يساعدك على إدارة جدولك الزمني بكل سهولة واحترافية. يدعم التقويم الهجري والميلادي مع تنبيهات ذكية وويدجت متعددة.</p>
+        <h1>Organize Your Appointments <span>Smartly</span></h1>
+        <p>Agenda helps you manage your schedule with ease and professionalism. Supports both Hijri and Gregorian calendars with smart notifications and multiple widgets.</p>
         <div class="hero-buttons">
             <a href="#" class="btn btn-primary">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-                تحميل من Google Play
+                Download from Google Play
             </a>
-            <a href="#features" class="btn btn-outline">استكشف المميزات</a>
+            <a href="#features" class="btn btn-outline">Explore Features</a>
         </div>
     </div>
 </section>
@@ -52,19 +54,19 @@
         <div class="stats-row">
             <div class="stat-item">
                 <div class="stat-number">12+</div>
-                <div class="stat-label">ميزة متقدمة</div>
+                <div class="stat-label">Advanced Features</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">4</div>
-                <div class="stat-label">ويدجت للشاشة</div>
+                <div class="stat-label">Screen Widgets</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">10</div>
-                <div class="stat-label">إضافة Tasker</div>
+                <div class="stat-number">9</div>
+                <div class="stat-label">Tasker Plugins</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">100%</div>
-                <div class="stat-label">خصوصية وأمان</div>
+                <div class="stat-label">Privacy &amp; Security</div>
             </div>
         </div>
     </div>
@@ -74,81 +76,81 @@
 <section class="section section-alt" id="features">
     <div class="container">
         <div class="section-header">
-            <h2>مميزات تجعل حياتك أسهل</h2>
-            <p>صُمم Agenda ليكون رفيقك اليومي في تنظيم مواعيدك بأفضل طريقة ممكنة</p>
+            <h2>Features That Make Life Easier</h2>
+            <p>Agenda is designed to be your daily companion for organizing your appointments in the best way possible</p>
         </div>
         <div class="features-grid">
 
             <div class="feature-card">
                 <div class="feature-icon blue">&#128197;</div>
-                <h3>إدارة المواعيد الشاملة</h3>
-                <p>أنشئ وعدّل واحذف المواعيد بسهولة. حدد الأولوية والتصنيف والموقع والملاحظات. دعم كامل للمواعيد طوال اليوم والمواعيد متعددة الأيام.</p>
+                <h3>Complete Appointment Management</h3>
+                <p>Create, edit, and delete appointments with ease. Set priority, category, location, and notes. Full support for all-day and multi-day appointments.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon green">&#127769;</div>
-                <h3>التقويم الهجري والميلادي</h3>
-                <p>عرض التواريخ بالتقويم الهجري والميلادي معاً. مثالي للمستخدم العربي مع دعم كامل للغة العربية واتجاه RTL.</p>
+                <h3>Hijri &amp; Gregorian Calendar</h3>
+                <p>Display dates in both Hijri and Gregorian calendars simultaneously. Full Arabic language and RTL support included.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon orange">&#128276;</div>
-                <h3>التنبيهات الذكية</h3>
-                <p>تنبيهات دقيقة بمواعيدك مع إمكانية التأجيل والإكمال من الإشعار مباشرة. ملخص يومي وأسبوعي تلقائي. حتى 3 تنبيهات لكل موعد.</p>
+                <h3>Smart Notifications</h3>
+                <p>Precise appointment reminders with snooze and complete actions right from the notification. Automatic daily and weekly summaries. Up to 3 reminders per appointment.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon red">&#128257;</div>
-                <h3>التكرار المتقدم</h3>
-                <p>كرر مواعيدك يومياً أو أسبوعياً أو شهرياً أو سنوياً. دعم التكرار المخصص بأيام محددة مع تاريخ انتهاء اختياري.</p>
+                <h3>Advanced Recurrence</h3>
+                <p>Repeat appointments daily, weekly, monthly, or yearly. Support for custom recurrence with specific days and optional end dates.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon purple">&#128202;</div>
-                <h3>الإحصائيات والتحليلات</h3>
-                <p>تابع إنجازاتك مع إحصائيات تفصيلية. عدد المواعيد المكتملة والملغاة والقادمة مع رسوم بيانية واضحة.</p>
+                <h3>Statistics &amp; Analytics</h3>
+                <p>Track your achievements with detailed statistics. View completed, cancelled, and upcoming appointments with clear charts.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon teal">&#128196;</div>
-                <h3>القوالب الجاهزة</h3>
-                <p>احفظ مواعيدك المتكررة كقوالب لإعادة استخدامها بنقرة واحدة. وفّر وقتك مع القوالب المخصصة.</p>
+                <h3>Ready-Made Templates</h3>
+                <p>Save recurring appointments as templates for one-tap reuse. Save time with custom templates.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon blue">&#128206;</div>
-                <h3>التصنيفات المخصصة</h3>
-                <p>نظّم مواعيدك بتصنيفات مخصصة بألوان مميزة. تصنيفات مدمجة (عمل، شخصي، صحة، تعليم) مع إمكانية إنشاء تصنيفاتك الخاصة.</p>
+                <h3>Custom Categories</h3>
+                <p>Organize appointments with color-coded custom categories. Built-in categories (Work, Personal, Health, Education) plus the ability to create your own.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon green">&#128196;</div>
-                <h3>تصدير PDF</h3>
-                <p>صدّر مواعيدك كملفات PDF احترافية. تصدير يومي أو أسبوعي أو شهري مع إمكانية المشاركة والنسخ المباشر.</p>
+                <h3>PDF Export</h3>
+                <p>Export your appointments as professional PDF files. Daily, weekly, or monthly exports with sharing and direct copy options.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon orange">&#128274;</div>
-                <h3>الأمان والخصوصية</h3>
-                <p>احمِ بياناتك برمز PIN أو بصمة الإصبع. المواعيد الخاصة مخفية في الإشعارات. تشفير كامل للنسخ الاحتياطية.</p>
+                <h3>Security &amp; Privacy</h3>
+                <p>Protect your data with PIN or fingerprint. Private appointments are hidden in notifications. Full backup encryption.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon red">&#128193;</div>
-                <h3>النسخ الاحتياطي والاستعادة</h3>
-                <p>نسخ احتياطي كامل لبياناتك مع خيار التشفير بكلمة مرور. استعادة سهلة وآمنة لجميع مواعيدك وإعداداتك.</p>
+                <h3>Backup &amp; Restore</h3>
+                <p>Full data backup with optional password encryption. Easy and secure restoration of all your appointments and settings.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon purple">&#128197;</div>
-                <h3>عروض التقويم المتعددة</h3>
-                <p>تنقل بين العرض اليومي والأسبوعي والشهري. نقاط ملونة تدل على المواعيد في كل يوم مع عرض شامل وواضح.</p>
+                <h3>Multiple Calendar Views</h3>
+                <p>Switch between daily, weekly, and monthly views. Color-coded dots indicate appointments on each day with a clear overview.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon teal">&#9881;</div>
-                <h3>تكامل Tasker</h3>
-                <p>10 إضافات لتطبيق Tasker تتيح أتمتة كاملة: إنشاء مواعيد، استعلام، إكمال، والمزيد. تحكم كامل بمواعيدك عبر الأتمتة.</p>
+                <h3>Tasker Integration</h3>
+                <p>9 Tasker plugins for full automation: create appointments, query, complete, and more. Full control over your appointments through automation.</p>
             </div>
 
         </div>
@@ -159,29 +161,29 @@
 <section class="section" id="widgets">
     <div class="container">
         <div class="section-header">
-            <h2>ويدجت لشاشتك الرئيسية</h2>
-            <p>تابع مواعيدك مباشرة من الشاشة الرئيسية بدون فتح التطبيق</p>
+            <h2>Widgets for Your Home Screen</h2>
+            <p>Keep track of your appointments directly from your home screen without opening the app</p>
         </div>
         <div class="widgets-grid">
             <div class="widget-card">
                 <div class="widget-icon">&#128197;</div>
-                <h3>مواعيد اليوم</h3>
-                <p>عرض جميع مواعيد اليوم الحالي مع الأوقات والتصنيفات في نظرة واحدة سريعة</p>
+                <h3>Today's Appointments</h3>
+                <p>View all of today's appointments with times and categories at a glance</p>
             </div>
             <div class="widget-card">
                 <div class="widget-icon">&#128198;</div>
-                <h3>مواعيد الأسبوع</h3>
-                <p>نظرة شاملة على مواعيد الأسبوع كاملاً مع ترميز لوني حسب التصنيف</p>
+                <h3>Week's Appointments</h3>
+                <p>A comprehensive overview of the entire week's appointments with color-coded categories</p>
             </div>
             <div class="widget-card">
                 <div class="widget-icon">&#9203;</div>
-                <h3>العد التنازلي</h3>
-                <p>عدّاد تنازلي للموعد القادم يوضح الوقت المتبقي بدقة</p>
+                <h3>Countdown Timer</h3>
+                <p>A countdown to your next appointment showing the exact remaining time</p>
             </div>
             <div class="widget-card">
                 <div class="widget-icon">&#10133;</div>
-                <h3>إضافة سريعة</h3>
-                <p>أضف موعداً جديداً بنقرة واحدة مباشرة من الشاشة الرئيسية</p>
+                <h3>Quick Add</h3>
+                <p>Add a new appointment with one tap directly from your home screen</p>
             </div>
         </div>
     </div>
@@ -189,9 +191,9 @@
 
 <!-- CTA -->
 <section class="cta-section">
-    <h2>جاهز لتنظيم حياتك؟</h2>
-    <p>حمّل Agenda الآن وابدأ بإدارة مواعيدك باحترافية</p>
-    <a href="#" class="btn btn-primary">تحميل من Google Play</a>
+    <h2>Ready to Organize Your Life?</h2>
+    <p>Download Agenda now and start managing your appointments like a pro</p>
+    <a href="#" class="btn btn-primary">Free Download from Google Play</a>
 </section>
 
 <!-- Footer -->
@@ -199,34 +201,34 @@
     <div class="footer-grid">
         <div class="footer-brand">
             <h3>Agenda</h3>
-            <p>تطبيق إدارة المواعيد الذكي. صُمم بعناية لتنظيم جدولك اليومي بكل سهولة واحترافية مع دعم كامل للغة العربية والتقويم الهجري.</p>
+            <p>Smart appointment management app. Carefully designed to organize your daily schedule with ease and professionalism, with full support for Arabic and the Hijri calendar.</p>
         </div>
         <div>
-            <h4>التطبيق</h4>
+            <h4>App</h4>
             <ul class="footer-links">
-                <li><a href="#features">المميزات</a></li>
-                <li><a href="#widgets">الويدجت</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#widgets">Widgets</a></li>
                 <li><a href="#">Google Play</a></li>
             </ul>
         </div>
         <div>
-            <h4>قانوني</h4>
+            <h4>Legal</h4>
             <ul class="footer-links">
-                <li><a href="privacy.html">سياسة الخصوصية</a></li>
-                <li><a href="terms.html">شروط الاستخدام</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
             </ul>
         </div>
         <div>
-            <h4>تواصل</h4>
+            <h4>Contact</h4>
             <ul class="footer-links">
                 <li><a href="mailto:android@aldaghir.com">android@aldaghir.com</a></li>
-                <li><a href="contact.html">صفحة التواصل</a></li>
+                <li><a href="contact.html">Contact Page</a></li>
             </ul>
         </div>
     </div>
     <div class="footer-bottom">
-        <span>&copy; 2026 Agenda. جميع الحقوق محفوظة.</span>
-        <span>صنع بـ &#10084; للمستخدم العربي</span>
+        <span>&copy; 2026 Agenda. All rights reserved.</span>
+        <span>Made with &#10084;</span>
     </div>
 </footer>
 

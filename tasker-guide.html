@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasker Integration Guide - Agenda</title>
+    <meta name="description" content="Complete guide to Agenda's Tasker plugins: 5 Actions, 2 Events, and 2 States for full appointment automation">
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-brand">
+            <img src="images/icon_round.png" alt="Agenda">
+            <span>Agenda</span>
+        </a>
+        <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu">&#9776;</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#widgets">Widgets</a></li>
+            <li><a href="tasker-guide.html" class="active">Tasker Guide</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="ar/tasker-guide.html" class="lang-switch">العربية</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Tasker Integration Guide -->
+<div class="legal-page">
+
+    <!-- 1. Title & Intro -->
+    <h1>Tasker Integration Guide</h1>
+    <p class="date">Complete guide to Agenda's Tasker plugins</p>
+
+    <div class="info-box">
+        <p><strong>Summary:</strong> Agenda provides 9 Tasker plugins for full automation of your appointments. Use Actions to create, complete, delete, query, and toggle reminders. React to Events when reminders fire or appointments are completed. Monitor States to know when appointments are happening now or are overdue.</p>
+    </div>
+
+    <table class="overview-table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Count</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="plugin-type-badge badge-action">Action</span></td>
+                <td>5</td>
+                <td>Perform operations on appointments</td>
+            </tr>
+            <tr>
+                <td><span class="plugin-type-badge badge-event">Event</span></td>
+                <td>2</td>
+                <td>React to appointment-related triggers</td>
+            </tr>
+            <tr>
+                <td><span class="plugin-type-badge badge-state">State</span></td>
+                <td>2</td>
+                <td>Monitor real-time appointment conditions</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 2. Table of Contents -->
+    <div class="guide-nav" id="toc">
+        <h3>Table of Contents</h3>
+        <ul>
+            <li><a href="#actions">Actions</a></li>
+            <li><a href="#action-create">Create Appointment</a></li>
+            <li><a href="#action-complete">Complete Appointment</a></li>
+            <li><a href="#action-delete">Delete Appointment</a></li>
+            <li><a href="#action-query">Query Appointments</a></li>
+            <li><a href="#action-toggle-reminder">Toggle Reminder</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#event-reminder">Appointment Reminder</a></li>
+            <li><a href="#event-completed">Appointment Completed</a></li>
+            <li><a href="#states">States</a></li>
+            <li><a href="#state-has-now">Has Appointments Now</a></li>
+            <li><a href="#state-has-overdue">Has Overdue Appointments</a></li>
+            <li><a href="#reference">Reference Values</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+        </ul>
+    </div>
+
+    <!-- 3. Requirements -->
+    <h2 id="requirements">Requirements</h2>
+    <ul>
+        <li>You must install the <strong>Tasker</strong> app separately from Google Play.</li>
+        <li>Agenda's plugins appear automatically in Tasker's plugin list once both apps are installed.</li>
+    </ul>
+
+    <!-- 4. Actions Section -->
+    <div class="plugin-section" id="actions">
+        <h2><span class="plugin-type-badge badge-action">Action</span> Actions</h2>
+        <p>Actions let you perform operations on appointments from Tasker. Agenda provides 5 action plugins.</p>
+
+        <!-- Create Appointment -->
+        <h3 id="action-create">Create Appointment</h3>
+        <p>Creates a new appointment with full control over all fields.</p>
+
+        <h4>Input Parameters</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Default</th>
+                    <th>Format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>title</code></td>
+                    <td>String</td>
+                    <td>Yes</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><code>description</code></td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>empty</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><code>location</code></td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>empty</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><code>date</code></td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>today + 1h</td>
+                    <td><code>yyyy-MM-dd</code></td>
+                </tr>
+                <tr>
+                    <td><code>time</code></td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>09:00</td>
+                    <td><code>HH:mm</code></td>
+                </tr>
+                <tr>
+                    <td><code>endTime</code></td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>-</td>
+                    <td><code>HH:mm</code></td>
+                </tr>
+                <tr>
+                    <td><code>isAllDay</code></td>
+                    <td>Boolean</td>
+                    <td>No</td>
+                    <td>false</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><code>category</code></td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>PERSONAL</td>
+                    <td><a href="#ref-categories">See Categories</a></td>
+                </tr>
+                <tr>
+                    <td><code>priority</code></td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>MEDIUM</td>
+                    <td><a href="#ref-priorities">See Priorities</a></td>
+                </tr>
+                <tr>
+                    <td><code>reminderEnabled</code></td>
+                    <td>Boolean</td>
+                    <td>No</td>
+                    <td>true</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><code>reminderTime</code></td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>FIFTEEN_MIN</td>
+                    <td><a href="#ref-reminders">See Reminder Times</a></td>
+                </tr>
+                <tr>
+                    <td><code>notes</code></td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>empty</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><code>repeatMode</code></td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>NONE</td>
+                    <td><a href="#ref-repeat">See Repeat Modes</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>Output Variables</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Variable</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>%appointment_id</code></td>
+                    <td>Long</td>
+                    <td>The ID of the created appointment, or -1 on failure</td>
+                </tr>
+                <tr>
+                    <td><code>%appointment_title</code></td>
+                    <td>String</td>
+                    <td>The title of the created appointment</td>
+                </tr>
+                <tr>
+                    <td><code>%appointment_date</code></td>
+                    <td>String</td>
+                    <td>The date in <code>yyyy-MM-dd</code> format</td>
+                </tr>
+                <tr>
+                    <td><code>%success</code></td>
+                    <td>Boolean</td>
+                    <td>Whether the operation succeeded</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Complete Appointment -->
+        <h3 id="action-complete">Complete Appointment</h3>
+        <p>Marks an existing appointment as completed. You can identify the appointment by its ID or title. At least one must be provided; if both are given, <code>appointmentId</code> takes priority.</p>
+
+        <h4>Input Parameters</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>appointmentId</code></td>
+                    <td>Long</td>
+                    <td>No*</td>
+                    <td>The appointment ID (takes priority over title)</td>
+                </tr>
+                <tr>
+                    <td><code>title</code></td>
+                    <td>String</td>
+                    <td>No*</td>
+                    <td>The appointment title (used if ID is not provided)</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><em>* At least one of <code>appointmentId</code> or <code>title</code> is required.</em></p>
+
+        <h4>Output Variables</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Variable</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>%success</code></td>
+                    <td>Boolean</td>
+                    <td>Whether the operation succeeded</td>
+                </tr>
+                <tr>
+                    <td><code>%appointment_id</code></td>
+                    <td>Long</td>
+                    <td>The ID of the completed appointment</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <p><strong>Note:</strong> Completing an appointment fires the <a href="#event-completed">Appointment Completed</a> event. If the appointment is recurring, the next occurrence is automatically created.</p>
+        </div>
+
+        <!-- Delete Appointment -->
+        <h3 id="action-delete">Delete Appointment</h3>
+        <p>Permanently deletes an appointment. You can identify the appointment by its ID or title. At least one must be provided; if both are given, <code>appointmentId</code> takes priority.</p>
+
+        <h4>Input Parameters</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>appointmentId</code></td>
+                    <td>Long</td>
+                    <td>No*</td>
+                    <td>The appointment ID (takes priority over title)</td>
+                </tr>
+                <tr>
+                    <td><code>title</code></td>
+                    <td>String</td>
+                    <td>No*</td>
+                    <td>The appointment title (used if ID is not provided)</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><em>* At least one of <code>appointmentId</code> or <code>title</code> is required.</em></p>
+
+        <h4>Output Variables</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Variable</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>%success</code></td>
+                    <td>Boolean</td>
+                    <td>Whether the operation succeeded</td>
+                </tr>
+                <tr>
+                    <td><code>%appointment_id</code></td>
+                    <td>Long</td>
+                    <td>The ID of the deleted appointment</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <p><strong>Note:</strong> Deleting an appointment cancels all pending reminders associated with it.</p>
+        </div>
+
+        <!-- Query Appointments -->
+        <h3 id="action-query">Query Appointments</h3>
+        <p>Retrieves appointments matching specified criteria. Returns results as Tasker arrays.</p>
+
+        <h4>Input Parameters</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>queryType</code></td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>TODAY</td>
+                    <td>The type of query to perform</td>
+                </tr>
+                <tr>
+                    <td><code>startDate</code></td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>-</td>
+                    <td>Start date for DATE_RANGE (<code>yyyy-MM-dd</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>endDate</code></td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>-</td>
+                    <td>End date for DATE_RANGE (<code>yyyy-MM-dd</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>category</code></td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>-</td>
+                    <td>Filter by category</td>
+                </tr>
+                <tr>
+                    <td><code>limit</code></td>
+                    <td>Int</td>
+                    <td>No</td>
+                    <td>10</td>
+                    <td>Maximum number of results</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>Query Types</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Value</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>TODAY</code></td>
+                    <td>Appointments scheduled for today</td>
+                </tr>
+                <tr>
+                    <td><code>TOMORROW</code></td>
+                    <td>Appointments scheduled for tomorrow</td>
+                </tr>
+                <tr>
+                    <td><code>UPCOMING</code></td>
+                    <td>All future appointments</td>
+                </tr>
+                <tr>
+                    <td><code>OVERDUE</code></td>
+                    <td>Uncompleted appointments whose date/time has passed</td>
+                </tr>
+                <tr>
+                    <td><code>DATE_RANGE</code></td>
+                    <td>Appointments within <code>startDate</code> and <code>endDate</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>Output Variables (per appointment)</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Variable</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>%title</code></td>
+                    <td>String</td>
+                    <td>Appointment title</td>
+                </tr>
+                <tr>
+                    <td><code>%date</code></td>
+                    <td>String</td>
+                    <td>Appointment date</td>
+                </tr>
+                <tr>
+                    <td><code>%time</code></td>
+                    <td>String</td>
+                    <td>Appointment time</td>
+                </tr>
+                <tr>
+                    <td><code>%category</code></td>
+                    <td>String</td>
+                    <td>Appointment category</td>
+                </tr>
+                <tr>
+                    <td><code>%priority</code></td>
+                    <td>String</td>
+                    <td>Appointment priority</td>
+                </tr>
+                <tr>
+                    <td><code>%location</code></td>
+                    <td>String</td>
+                    <td>Appointment location</td>
+                </tr>
+                <tr>
+                    <td><code>%is_completed</code></td>
+                    <td>Boolean</td>
+                    <td>Whether the appointment is completed</td>
+                </tr>
+                <tr>
+                    <td><code>%id</code></td>
+                    <td>Long</td>
+                    <td>Appointment ID</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <p><strong>Note:</strong> When multiple appointments are returned, the output variables are arrays. Access individual items using Tasker array notation, e.g., <code>%title(1)</code>, <code>%title(2)</code>, etc.</p>
+        </div>
+
+        <!-- Toggle Reminder -->
+        <h3 id="action-toggle-reminder">Toggle Reminder</h3>
+        <p>Enables or disables the reminder for a specific appointment.</p>
+
+        <h4>Input Parameters</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>appointmentId</code></td>
+                    <td>Long</td>
+                    <td>Yes</td>
+                    <td>-</td>
+                    <td>The appointment ID</td>
+                </tr>
+                <tr>
+                    <td><code>enabled</code></td>
+                    <td>Boolean</td>
+                    <td>No</td>
+                    <td>true</td>
+                    <td>Whether to enable or disable the reminder</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>Output Variables</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Variable</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>%success</code></td>
+                    <td>Boolean</td>
+                    <td>Whether the operation succeeded</td>
+                </tr>
+                <tr>
+                    <td><code>%appointment_id</code></td>
+                    <td>Long</td>
+                    <td>The appointment ID</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <p><strong>Note:</strong> When enabling a reminder, the system schedules the alarm. When disabling, the pending alarm is cancelled.</p>
+        </div>
+    </div>
+
+    <!-- 5. Events Section -->
+    <div class="plugin-section events-section" id="events">
+        <h2><span class="plugin-type-badge badge-event">Event</span> Events</h2>
+        <p>Events let Tasker react when something happens in Agenda. Agenda provides 2 event plugins.</p>
+
+        <!-- Appointment Reminder -->
+        <h3 id="event-reminder">Appointment Reminder</h3>
+        <p>Fires when a reminder notification is shown for an appointment.</p>
+
+        <h4>Output Variables</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Variable</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>%appointment_id</code></td>
+                    <td>Long</td>
+                    <td>The appointment ID</td>
+                </tr>
+                <tr>
+                    <td><code>%title</code></td>
+                    <td>String</td>
+                    <td>The appointment title</td>
+                </tr>
+                <tr>
+                    <td><code>%category</code></td>
+                    <td>String</td>
+                    <td>The appointment category</td>
+                </tr>
+                <tr>
+                    <td><code>%priority</code></td>
+                    <td>String</td>
+                    <td>The appointment priority</td>
+                </tr>
+                <tr>
+                    <td><code>%datetime</code></td>
+                    <td>String</td>
+                    <td>The appointment date and time</td>
+                </tr>
+                <tr>
+                    <td><code>%location</code></td>
+                    <td>String</td>
+                    <td>The appointment location</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <p><strong>When it fires:</strong> This event fires when the reminder notification is displayed. It only fires for active (non-completed) appointments with reminders enabled.</p>
+        </div>
+
+        <!-- Appointment Completed -->
+        <h3 id="event-completed">Appointment Completed</h3>
+        <p>Fires when an appointment is marked as completed.</p>
+
+        <h4>Output Variables</h4>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Variable</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>%appointment_id</code></td>
+                    <td>Long</td>
+                    <td>The appointment ID</td>
+                </tr>
+                <tr>
+                    <td><code>%title</code></td>
+                    <td>String</td>
+                    <td>The appointment title</td>
+                </tr>
+                <tr>
+                    <td><code>%category</code></td>
+                    <td>String</td>
+                    <td>The appointment category</td>
+                </tr>
+                <tr>
+                    <td><code>%priority</code></td>
+                    <td>String</td>
+                    <td>The appointment priority</td>
+                </tr>
+                <tr>
+                    <td><code>%datetime</code></td>
+                    <td>String</td>
+                    <td>The appointment date and time</td>
+                </tr>
+                <tr>
+                    <td><code>%location</code></td>
+                    <td>String</td>
+                    <td>The appointment location</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <p><strong>When it fires:</strong> This event fires when an appointment is completed from the app UI, from a notification action, or from the Tasker Complete Appointment action.</p>
+        </div>
+    </div>
+
+    <!-- 6. States Section -->
+    <div class="plugin-section states-section" id="states">
+        <h2><span class="plugin-type-badge badge-state">State</span> States</h2>
+        <p>States let Tasker monitor ongoing conditions in Agenda. Agenda provides 2 state plugins.</p>
+
+        <!-- Has Appointments Now -->
+        <h3 id="state-has-now">Has Appointments Now</h3>
+        <p>This state is true when there are active appointments happening at the current time.</p>
+
+        <h4>Configuration</h4>
+        <p>No configuration required. The state activates and deactivates automatically.</p>
+
+        <h4>How It Works</h4>
+        <ul>
+            <li>An appointment is considered "happening now" when: <code>dateTime &lt;= now &lt;= endDateTime</code></li>
+            <li>If no end time is set, the appointment is assumed to last 1 hour: <code>dateTime &lt;= now &lt;= dateTime + 1h</code></li>
+            <li>Only active (non-completed) appointments are considered.</li>
+        </ul>
+
+        <!-- Has Overdue Appointments -->
+        <h3 id="state-has-overdue">Has Overdue Appointments</h3>
+        <p>This state is true when there are uncompleted appointments whose scheduled date and time has passed.</p>
+
+        <h4>Configuration</h4>
+        <p>No configuration required. The state activates and deactivates automatically.</p>
+
+        <h4>How It Works</h4>
+        <ul>
+            <li>An appointment is considered "overdue" when its scheduled date/time has passed and it has not been completed.</li>
+            <li>The state becomes true as soon as any appointment becomes overdue, and returns to false when all overdue appointments are completed or deleted.</li>
+        </ul>
+    </div>
+
+    <!-- 7. Reference Values -->
+    <div class="plugin-section" id="reference">
+        <h2>Reference Values</h2>
+        <p>The following tables list all valid values for the string parameters used across Agenda's Tasker plugins.</p>
+
+        <h3 id="ref-categories">Categories</h3>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Value</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>WORK</code></td><td>Work-related appointments</td></tr>
+                <tr><td><code>PERSONAL</code></td><td>Personal appointments</td></tr>
+                <tr><td><code>HEALTH</code></td><td>Health and medical appointments</td></tr>
+                <tr><td><code>MEETING</code></td><td>Meetings</td></tr>
+                <tr><td><code>FAMILY</code></td><td>Family-related appointments</td></tr>
+                <tr><td><code>EDUCATION</code></td><td>Educational appointments</td></tr>
+                <tr><td><code>FINANCE</code></td><td>Financial appointments</td></tr>
+                <tr><td><code>OTHER</code></td><td>Other / uncategorized</td></tr>
+            </tbody>
+        </table>
+
+        <h3 id="ref-priorities">Priorities</h3>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Value</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>LOW</code></td><td>Low priority</td></tr>
+                <tr><td><code>MEDIUM</code></td><td>Medium priority (default)</td></tr>
+                <tr><td><code>HIGH</code></td><td>High priority</td></tr>
+                <tr><td><code>URGENT</code></td><td>Urgent priority</td></tr>
+            </tbody>
+        </table>
+
+        <h3 id="ref-reminders">Reminder Times</h3>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Value</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>FIVE_MIN</code></td><td>5 minutes before</td></tr>
+                <tr><td><code>TEN_MIN</code></td><td>10 minutes before</td></tr>
+                <tr><td><code>FIFTEEN_MIN</code></td><td>15 minutes before (default)</td></tr>
+                <tr><td><code>THIRTY_MIN</code></td><td>30 minutes before</td></tr>
+                <tr><td><code>ONE_HOUR</code></td><td>1 hour before</td></tr>
+                <tr><td><code>TWO_HOURS</code></td><td>2 hours before</td></tr>
+                <tr><td><code>ONE_DAY</code></td><td>1 day before</td></tr>
+            </tbody>
+        </table>
+
+        <h3 id="ref-repeat">Repeat Modes</h3>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Value</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>NONE</code></td><td>No repetition (default)</td></tr>
+                <tr><td><code>DAILY</code></td><td>Repeat every day</td></tr>
+                <tr><td><code>WEEKLY</code></td><td>Repeat every week</td></tr>
+                <tr><td><code>MONTHLY</code></td><td>Repeat every month</td></tr>
+                <tr><td><code>YEARLY</code></td><td>Repeat every year</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 8. Examples Section -->
+    <div class="plugin-section" id="examples">
+        <h2>Practical Examples</h2>
+        <p>Here are 10 practical automation examples using Agenda's Tasker plugins.</p>
+
+        <!-- Example 1 -->
+        <div class="example-card">
+            <h4>1. Daily Standup Meeting Creator</h4>
+            <p class="goal"><strong>Goal:</strong> Every Sunday at 8 PM, automatically create standup meeting appointments for the entire upcoming work week (Monday through Friday).</p>
+            <p><strong>Profile:</strong> Time &rarr; Every Sunday at 20:00</p>
+            <div class="code-block">
+Task: Create Week Standup Meetings
+
+A1: Variable Set [%day_offset to 1]
+A2: For [%i from 1 to 5]
+    A3: Variable Set [%meeting_date to %DATE + %day_offset days, format yyyy-MM-dd]
+    A4: Plugin &rarr; Agenda: Create Appointment
+        title: "Daily Standup Meeting"
+        date: %meeting_date
+        time: "09:00"
+        endTime: "09:30"
+        category: "MEETING"
+        priority: "HIGH"
+        reminderTime: "FIFTEEN_MIN"
+        repeatMode: "NONE"
+    A5: Variable Add [%day_offset + 1]
+A6: End For
+A7: Flash "Created 5 standup meetings for the week"
+            </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="example-card">
+            <h4>2. Smart Notification on WiFi Arrival</h4>
+            <p class="goal"><strong>Goal:</strong> When you connect to your office WiFi, query today's work appointments and show a summary notification.</p>
+            <p><strong>Profile:</strong> State &rarr; Wifi Connected [SSID: Office_WiFi]</p>
+            <div class="code-block">
+Task: Show Work Appointments
+
+A1: Plugin &rarr; Agenda: Query Appointments
+    queryType: "TODAY"
+    category: "WORK"
+    limit: 10
+A2: Variable Set [%count to %title(#)]
+A3: If [%count > 0]
+    A4: Variable Set [%summary to ""]
+    A5: For [%i from 1 to %count]
+        A6: Variable Set [%summary to %summary + %time(%i) + " - " + %title(%i) + "\n"]
+    A7: End For
+    A8: Notify [Title: "Today's Work Schedule (%count)"
+               Text: %summary
+               Icon: calendar]
+A9: Else
+    A10: Notify [Title: "No work appointments today"
+                Text: "Your schedule is clear!"]
+A11: End If
+            </div>
+        </div>
+
+        <!-- Example 3 -->
+        <div class="example-card">
+            <h4>3. Auto-Complete Past Appointments</h4>
+            <p class="goal"><strong>Goal:</strong> Every night at 11 PM, query all overdue appointments and mark them as completed automatically.</p>
+            <p><strong>Profile:</strong> Time &rarr; Every day at 23:00</p>
+            <div class="code-block">
+Task: Complete Overdue Appointments
+
+A1: Plugin &rarr; Agenda: Query Appointments
+    queryType: "OVERDUE"
+    limit: 50
+A2: Variable Set [%count to %title(#)]
+A3: If [%count > 0]
+    A4: For [%i from 1 to %count]
+        A5: Plugin &rarr; Agenda: Complete Appointment
+            appointmentId: %id(%i)
+    A6: End For
+    A7: Flash "Completed %count overdue appointments"
+A8: Else
+    A9: Flash "No overdue appointments found"
+A10: End If
+            </div>
+        </div>
+
+        <!-- Example 4 -->
+        <div class="example-card">
+            <h4>4. Meeting Reminder with TTS</h4>
+            <p class="goal"><strong>Goal:</strong> When an appointment reminder fires, announce the meeting details aloud using text-to-speech.</p>
+            <p><strong>Profile:</strong> Event &rarr; Plugin &rarr; Agenda: Appointment Reminder</p>
+            <div class="code-block">
+Task: Announce Meeting
+
+A1: Say ["You have an upcoming appointment: %title,
+         scheduled at %datetime,
+         category: %category,
+         priority: %priority"]
+A2: If [%location is set]
+    A3: Say ["Location: %location"]
+A4: End If
+A5: Wait [2 seconds]
+A6: Say ["Don't forget to prepare!"]
+            </div>
+        </div>
+
+        <!-- Example 5 -->
+        <div class="example-card">
+            <h4>5. Completion Celebration</h4>
+            <p class="goal"><strong>Goal:</strong> Play a celebration sound and show a notification whenever you complete an appointment.</p>
+            <p><strong>Profile:</strong> Event &rarr; Plugin &rarr; Agenda: Appointment Completed</p>
+            <div class="code-block">
+Task: Celebrate Completion
+
+A1: Media Play File [File: /sdcard/Notifications/celebration.mp3
+                     Stream: Notification]
+A2: Notify [Title: "Appointment Completed!"
+           Text: "Well done! You completed: %title"
+           Icon: check_circle
+           Priority: High]
+A3: Flash "Great job completing '%title'!"
+            </div>
+        </div>
+
+        <!-- Example 6 -->
+        <div class="example-card">
+            <h4>6. DND During Appointments</h4>
+            <p class="goal"><strong>Goal:</strong> Automatically enable Do Not Disturb mode while an appointment is happening, and disable it when the appointment ends.</p>
+            <p><strong>Profile:</strong> State &rarr; Plugin &rarr; Agenda: Has Appointments Now</p>
+            <div class="code-block">
+Enter Task: Enable DND
+
+A1: Do Not Disturb [Mode: Priority Only]
+A2: Flash "DND enabled - appointment in progress"
+
+Exit Task: Disable DND
+
+A1: Do Not Disturb [Mode: Off]
+A2: Flash "DND disabled - appointment ended"
+            </div>
+        </div>
+
+        <!-- Example 7 -->
+        <div class="example-card">
+            <h4>7. Overdue Alert Loop</h4>
+            <p class="goal"><strong>Goal:</strong> While overdue appointments exist, send a persistent notification every 30 minutes reminding you to deal with them.</p>
+            <p><strong>Profile:</strong> State &rarr; Plugin &rarr; Agenda: Has Overdue Appointments</p>
+            <div class="code-block">
+Enter Task: Overdue Alert
+
+A1: Plugin &rarr; Agenda: Query Appointments
+    queryType: "OVERDUE"
+    limit: 10
+A2: Variable Set [%count to %title(#)]
+A3: Notify [Title: "You have %count overdue appointments!"
+           Text: "First overdue: %title(1) on %date(1)"
+           Icon: warning
+           Priority: Max
+           Ongoing: true
+           ID: 999]
+
+Exit Task: Clear Alert
+
+A1: Notify Cancel [ID: 999]
+A2: Flash "All overdue appointments resolved"
+            </div>
+        </div>
+
+        <!-- Example 8 -->
+        <div class="example-card">
+            <h4>8. Create Appointment via Voice</h4>
+            <p class="goal"><strong>Goal:</strong> Use voice input to quickly create an appointment with a spoken title, then confirm with a notification.</p>
+            <p><strong>Profile:</strong> Shortcut &rarr; Task Shortcut (or widget tap)</p>
+            <div class="code-block">
+Task: Voice Appointment
+
+A1: Get Voice [Title: "Say the appointment title"]
+A2: If [%VOICE is set]
+    A3: Plugin &rarr; Agenda: Create Appointment
+        title: %VOICE
+        category: "PERSONAL"
+        priority: "MEDIUM"
+        reminderTime: "FIFTEEN_MIN"
+    A4: If [%success eq true]
+        A5: Flash "Created: %VOICE"
+        A6: Notify [Title: "Appointment Created"
+                   Text: "%VOICE on %appointment_date"]
+    A7: Else
+        A8: Flash "Failed to create appointment"
+    A9: End If
+A10: Else
+    A11: Flash "No voice input detected"
+A12: End If
+            </div>
+        </div>
+
+        <!-- Example 9 -->
+        <div class="example-card">
+            <h4>9. Weekly Report via Notification</h4>
+            <p class="goal"><strong>Goal:</strong> Every Friday at 6 PM, generate a summary of the upcoming week's appointments and display it as a notification.</p>
+            <p><strong>Profile:</strong> Time &rarr; Every Friday at 18:00</p>
+            <div class="code-block">
+Task: Weekly Summary
+
+A1: Variable Set [%start to %DATE + 3 days, format yyyy-MM-dd]
+A2: Variable Set [%end to %DATE + 7 days, format yyyy-MM-dd]
+A3: Plugin &rarr; Agenda: Query Appointments
+    queryType: "DATE_RANGE"
+    startDate: %start
+    endDate: %end
+    limit: 50
+A4: Variable Set [%count to %title(#)]
+A5: If [%count > 0]
+    A6: Variable Set [%summary to ""]
+    A7: For [%i from 1 to %count]
+        A8: Variable Set [%summary to %summary + %date(%i) + " " + %time(%i) + " - " + %title(%i) + "\n"]
+    A9: End For
+    A10: Notify [Title: "Next Week: %count appointments"
+               Text: %summary
+               Icon: calendar
+               Priority: High]
+A11: Else
+    A12: Notify [Title: "Next week is clear!"
+               Text: "No appointments scheduled for next week."
+               Icon: calendar]
+A13: End If
+            </div>
+        </div>
+
+        <!-- Example 10 -->
+        <div class="example-card">
+            <h4>10. Toggle Reminders Based on Location</h4>
+            <p class="goal"><strong>Goal:</strong> When your car's Bluetooth connects, disable reminders for your next appointment (assuming you are already on your way). Re-enable when Bluetooth disconnects.</p>
+            <p><strong>Profile:</strong> State &rarr; BT Connected [Name: Car_BT]</p>
+            <div class="code-block">
+Enter Task: Disable Reminder
+
+A1: Plugin &rarr; Agenda: Query Appointments
+    queryType: "TODAY"
+    limit: 1
+A2: If [%id(1) is set]
+    A3: Plugin &rarr; Agenda: Toggle Reminder
+        appointmentId: %id(1)
+        enabled: false
+    A4: Flash "Reminder disabled for: %title(1)"
+A5: End If
+
+Exit Task: Re-enable Reminder
+
+A1: Plugin &rarr; Agenda: Query Appointments
+    queryType: "TODAY"
+    limit: 1
+A2: If [%id(1) is set]
+    A3: Plugin &rarr; Agenda: Toggle Reminder
+        appointmentId: %id(1)
+        enabled: true
+    A4: Flash "Reminder re-enabled for: %title(1)"
+A5: End If
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. Troubleshooting Section -->
+    <div class="plugin-section" id="troubleshooting">
+        <h2>Troubleshooting</h2>
+        <p>Here are solutions to common issues you might encounter when using Agenda's Tasker plugins.</p>
+
+        <h3>Plugins Not Appearing in Tasker</h3>
+        <ul>
+            <li>Ensure both <strong>Agenda</strong> and <strong>Tasker</strong> are installed on your device.</li>
+            <li>Restart the Tasker app completely (force stop and reopen).</li>
+            <li>If the issue persists, reinstall Agenda and reopen Tasker.</li>
+        </ul>
+
+        <h3>Actions Failing or Returning Errors</h3>
+        <ul>
+            <li>Check that all <strong>required parameters</strong> are provided and correctly formatted.</li>
+            <li>Verify that date formats use <code>yyyy-MM-dd</code> and time formats use <code>HH:mm</code>.</li>
+            <li>Ensure category, priority, reminder time, and repeat mode values match the exact strings listed in the <a href="#reference">Reference Values</a> section.</li>
+            <li>For Complete and Delete actions, verify that the appointment ID exists or the title matches an existing appointment.</li>
+        </ul>
+
+        <h3>Events Not Firing</h3>
+        <ul>
+            <li>Ensure Tasker is running in the background and has not been killed by the system.</li>
+            <li>Disable battery optimization for both Tasker and Agenda in your device settings.</li>
+            <li>Check that Tasker's event monitoring is active (Tasker should show an active notification).</li>
+            <li>Verify that the appointment has reminders enabled (for the Reminder event).</li>
+        </ul>
+
+        <h3>States Not Updating</h3>
+        <ul>
+            <li>Restart Tasker's monitoring by toggling the Tasker service off and on.</li>
+            <li>Ensure battery optimization is disabled for both apps.</li>
+            <li>Verify that appointments exist that match the state conditions (e.g., active appointments happening now, or uncompleted overdue appointments).</li>
+            <li>If the state seems stuck, force stop Tasker and reopen it.</li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <h3>Agenda</h3>
+            <p>Smart appointment management app. Your data is stored locally on your device only.</p>
+        </div>
+        <div>
+            <h4>App</h4>
+            <ul class="footer-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#widgets">Widgets</a></li>
+                <li><a href="#">Google Play</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Legal</h4>
+            <ul class="footer-links">
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Contact</h4>
+            <ul class="footer-links">
+                <li><a href="mailto:android@aldaghir.com">android@aldaghir.com</a></li>
+                <li><a href="contact.html">Contact Page</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Agenda. All rights reserved.</span>
+        <span>Made with &#10084;</span>
+    </div>
+</footer>
+
+<script>
+function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+}
+window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('navbar');
+    navbar.classList.toggle('scrolled', window.scrollY > 10);
+});
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+</script>
+
+</body>
+</html>

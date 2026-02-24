@@ -1,5 +1,5 @@
-/* Agenda Website - Professional Arabic RTL Design */
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+/* Agenda Website - Professional LTR/RTL Design */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap');
 
 :root {
     --primary: #1a73e8;
@@ -29,12 +29,19 @@ html {
 }
 
 body {
-    font-family: 'Tajawal', sans-serif;
-    direction: rtl;
+    font-family: 'Inter', 'Tajawal', sans-serif;
+    direction: ltr;
     color: var(--text);
     background: var(--bg);
     line-height: 1.7;
     font-size: 16px;
+}
+
+/* RTL Override */
+[dir="rtl"] body,
+[dir="rtl"] {
+    font-family: 'Tajawal', 'Inter', sans-serif;
+    direction: rtl;
 }
 
 /* Navigation */
@@ -100,6 +107,24 @@ body {
 .nav-links a.active {
     color: var(--primary);
     background: var(--primary-light);
+}
+
+/* Language Switcher */
+.lang-switch {
+    text-decoration: none;
+    color: var(--primary) !important;
+    padding: 6px 14px !important;
+    border: 1.5px solid var(--primary);
+    border-radius: 20px !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.lang-switch:hover {
+    background: var(--primary) !important;
+    color: #fff !important;
 }
 
 .nav-toggle {
@@ -496,8 +521,14 @@ body {
 
 .legal-page ul,
 .legal-page ol {
-    padding-right: 24px;
+    padding-left: 24px;
     margin-bottom: 16px;
+}
+
+[dir="rtl"] .legal-page ul,
+[dir="rtl"] .legal-page ol {
+    padding-left: 0;
+    padding-right: 24px;
 }
 
 .legal-page li {
@@ -506,10 +537,16 @@ body {
 
 .info-box {
     background: var(--primary-light);
-    border-right: 4px solid var(--primary);
+    border-left: 4px solid var(--primary);
     padding: 20px 24px;
     border-radius: 0 var(--radius) var(--radius) 0;
     margin: 24px 0;
+}
+
+[dir="rtl"] .info-box {
+    border-left: none;
+    border-right: 4px solid var(--primary);
+    border-radius: var(--radius) 0 0 var(--radius);
 }
 
 .info-box p {
@@ -557,6 +594,183 @@ body {
     color: var(--primary);
     text-decoration: none;
     font-weight: 600;
+}
+
+/* Tasker Guide Page */
+.guide-nav {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin: 32px 0;
+}
+
+.guide-nav h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text);
+}
+
+.guide-nav ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px;
+}
+
+.guide-nav a {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: block;
+    transition: background 0.2s;
+}
+
+.guide-nav a:hover {
+    background: var(--primary-light);
+}
+
+.plugin-type-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-action {
+    background: #e8f0fe;
+    color: #1a73e8;
+}
+
+.badge-event {
+    background: #e8f5e9;
+    color: #1b873e;
+}
+
+.badge-state {
+    background: #fef7e0;
+    color: #b06000;
+}
+
+.param-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 0.9rem;
+}
+
+.param-table th,
+.param-table td {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    text-align: left;
+}
+
+[dir="rtl"] .param-table th,
+[dir="rtl"] .param-table td {
+    text-align: right;
+}
+
+.param-table th {
+    background: var(--bg-alt);
+    font-weight: 600;
+    color: var(--text);
+}
+
+.param-table td {
+    color: var(--text-secondary);
+}
+
+.param-table code {
+    background: #f1f3f4;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: var(--text);
+}
+
+.code-block {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    margin: 16px 0 24px;
+    overflow-x: auto;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    direction: ltr;
+    text-align: left;
+}
+
+.example-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin: 24px 0;
+}
+
+.example-card h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.example-card .goal {
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+.plugin-section {
+    border-top: 3px solid var(--primary);
+    padding-top: 32px;
+    margin-top: 48px;
+}
+
+.plugin-section.events-section {
+    border-top-color: var(--secondary);
+}
+
+.plugin-section.states-section {
+    border-top-color: var(--accent);
+}
+
+.overview-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 32px;
+}
+
+.overview-table th,
+.overview-table td {
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    text-align: left;
+}
+
+[dir="rtl"] .overview-table th,
+[dir="rtl"] .overview-table td {
+    text-align: right;
+}
+
+.overview-table th {
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+}
+
+.overview-table tr:nth-child(even) {
+    background: var(--bg-alt);
 }
 
 /* Responsive */
@@ -616,6 +830,19 @@ body {
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+    }
+
+    .param-table {
+        font-size: 0.8rem;
+    }
+
+    .param-table th,
+    .param-table td {
+        padding: 8px 10px;
+    }
+
+    .guide-nav ul {
+        grid-template-columns: 1fr;
     }
 }
 

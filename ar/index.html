@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda - تطبيق إدارة المواعيد الذكي</title>
+    <meta name="description" content="تطبيق Agenda لإدارة المواعيد والجدول الزمني بذكاء. يدعم التقويم الهجري والميلادي، التنبيهات الذكية، الويدجت، والمزيد.">
+    <meta name="keywords" content="agenda, مواعيد, تقويم, هجري, تطبيق أندرويد, إدارة مواعيد">
+    <link rel="icon" type="image/png" href="../images/icon.png">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-brand">
+            <img src="../images/icon_round.png" alt="Agenda">
+            <span>Agenda</span>
+        </a>
+        <button class="nav-toggle" onclick="toggleNav()" aria-label="القائمة">&#9776;</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="active">الرئيسية</a></li>
+            <li><a href="#features">المميزات</a></li>
+            <li><a href="#widgets">الويدجت</a></li>
+            <li><a href="tasker-guide.html">دليل Tasker</a></li>
+            <li><a href="privacy.html">الخصوصية</a></li>
+            <li><a href="terms.html">الشروط</a></li>
+            <li><a href="contact.html">تواصل معنا</a></li>
+            <li><a href="../index.html" class="lang-switch">English</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-content">
+        <img src="../images/icon_round.png" alt="Agenda" class="hero-icon">
+        <h1>نظّم مواعيدك بـ<span>ذكاء</span></h1>
+        <p>تطبيق Agenda يساعدك على إدارة جدولك الزمني بكل سهولة واحترافية. يدعم التقويم الهجري والميلادي مع تنبيهات ذكية وويدجت متعددة.</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                تحميل من Google Play
+            </a>
+            <a href="#features" class="btn btn-outline">استكشف المميزات</a>
+        </div>
+    </div>
+</section>
+
+<!-- Stats -->
+<section class="section">
+    <div class="container">
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-number">12+</div>
+                <div class="stat-label">ميزة متقدمة</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4</div>
+                <div class="stat-label">ويدجت للشاشة</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">9</div>
+                <div class="stat-label">إضافة Tasker</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">خصوصية وأمان</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="section section-alt" id="features">
+    <div class="container">
+        <div class="section-header">
+            <h2>مميزات تجعل حياتك أسهل</h2>
+            <p>صُمم Agenda ليكون رفيقك اليومي في تنظيم مواعيدك بأفضل طريقة ممكنة</p>
+        </div>
+        <div class="features-grid">
+
+            <div class="feature-card">
+                <div class="feature-icon blue">&#128197;</div>
+                <h3>إدارة المواعيد الشاملة</h3>
+                <p>أنشئ وعدّل واحذف المواعيد بسهولة. حدد الأولوية والتصنيف والموقع والملاحظات. دعم كامل للمواعيد طوال اليوم والمواعيد متعددة الأيام.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon green">&#127769;</div>
+                <h3>التقويم الهجري والميلادي</h3>
+                <p>عرض التواريخ بالتقويم الهجري والميلادي معاً مع دعم كامل للغة العربية واتجاه RTL.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon orange">&#128276;</div>
+                <h3>التنبيهات الذكية</h3>
+                <p>تنبيهات دقيقة بمواعيدك مع إمكانية التأجيل والإكمال من الإشعار مباشرة. ملخص يومي وأسبوعي تلقائي. حتى 3 تنبيهات لكل موعد.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon red">&#128257;</div>
+                <h3>التكرار المتقدم</h3>
+                <p>كرر مواعيدك يومياً أو أسبوعياً أو شهرياً أو سنوياً. دعم التكرار المخصص بأيام محددة مع تاريخ انتهاء اختياري.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon purple">&#128202;</div>
+                <h3>الإحصائيات والتحليلات</h3>
+                <p>تابع إنجازاتك مع إحصائيات تفصيلية. عدد المواعيد المكتملة والملغاة والقادمة مع رسوم بيانية واضحة.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon teal">&#128196;</div>
+                <h3>القوالب الجاهزة</h3>
+                <p>احفظ مواعيدك المتكررة كقوالب لإعادة استخدامها بنقرة واحدة. وفّر وقتك مع القوالب المخصصة.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon blue">&#128206;</div>
+                <h3>التصنيفات المخصصة</h3>
+                <p>نظّم مواعيدك بتصنيفات مخصصة بألوان مميزة. تصنيفات مدمجة (عمل، شخصي، صحة، تعليم) مع إمكانية إنشاء تصنيفاتك الخاصة.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon green">&#128196;</div>
+                <h3>تصدير PDF</h3>
+                <p>صدّر مواعيدك كملفات PDF احترافية. تصدير يومي أو أسبوعي أو شهري مع إمكانية المشاركة والنسخ المباشر.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon orange">&#128274;</div>
+                <h3>الأمان والخصوصية</h3>
+                <p>احمِ بياناتك برمز PIN أو بصمة الإصبع. المواعيد الخاصة مخفية في الإشعارات. تشفير كامل للنسخ الاحتياطية.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon red">&#128193;</div>
+                <h3>النسخ الاحتياطي والاستعادة</h3>
+                <p>نسخ احتياطي كامل لبياناتك مع خيار التشفير بكلمة مرور. استعادة سهلة وآمنة لجميع مواعيدك وإعداداتك.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon purple">&#128197;</div>
+                <h3>عروض التقويم المتعددة</h3>
+                <p>تنقل بين العرض اليومي والأسبوعي والشهري. نقاط ملونة تدل على المواعيد في كل يوم مع عرض شامل وواضح.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon teal">&#9881;</div>
+                <h3>تكامل Tasker</h3>
+                <p>9 إضافات لتطبيق Tasker تتيح أتمتة كاملة: إنشاء مواعيد، استعلام، إكمال، والمزيد. تحكم كامل بمواعيدك عبر الأتمتة.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Widgets -->
+<section class="section" id="widgets">
+    <div class="container">
+        <div class="section-header">
+            <h2>ويدجت لشاشتك الرئيسية</h2>
+            <p>تابع مواعيدك مباشرة من الشاشة الرئيسية بدون فتح التطبيق</p>
+        </div>
+        <div class="widgets-grid">
+            <div class="widget-card">
+                <div class="widget-icon">&#128197;</div>
+                <h3>مواعيد اليوم</h3>
+                <p>عرض جميع مواعيد اليوم الحالي مع الأوقات والتصنيفات في نظرة واحدة سريعة</p>
+            </div>
+            <div class="widget-card">
+                <div class="widget-icon">&#128198;</div>
+                <h3>مواعيد الأسبوع</h3>
+                <p>نظرة شاملة على مواعيد الأسبوع كاملاً مع ترميز لوني حسب التصنيف</p>
+            </div>
+            <div class="widget-card">
+                <div class="widget-icon">&#9203;</div>
+                <h3>العد التنازلي</h3>
+                <p>عدّاد تنازلي للموعد القادم يوضح الوقت المتبقي بدقة</p>
+            </div>
+            <div class="widget-card">
+                <div class="widget-icon">&#10133;</div>
+                <h3>إضافة سريعة</h3>
+                <p>أضف موعداً جديداً بنقرة واحدة مباشرة من الشاشة الرئيسية</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>جاهز لتنظيم حياتك؟</h2>
+    <p>حمّل Agenda الآن وابدأ بإدارة مواعيدك باحترافية</p>
+    <a href="#" class="btn btn-primary">تحميل مجاني من Google Play</a>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <h3>Agenda</h3>
+            <p>تطبيق إدارة المواعيد الذكي. صُمم بعناية لتنظيم جدولك اليومي بكل سهولة واحترافية مع دعم كامل للغة العربية والتقويم الهجري.</p>
+        </div>
+        <div>
+            <h4>التطبيق</h4>
+            <ul class="footer-links">
+                <li><a href="#features">المميزات</a></li>
+                <li><a href="#widgets">الويدجت</a></li>
+                <li><a href="#">Google Play</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>قانوني</h4>
+            <ul class="footer-links">
+                <li><a href="privacy.html">سياسة الخصوصية</a></li>
+                <li><a href="terms.html">شروط الاستخدام</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>تواصل</h4>
+            <ul class="footer-links">
+                <li><a href="mailto:android@aldaghir.com">android@aldaghir.com</a></li>
+                <li><a href="contact.html">صفحة التواصل</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Agenda. جميع الحقوق محفوظة.</span>
+        <span>صنع بـ &#10084;</span>
+    </div>
+</footer>
+
+<script>
+function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+}
+
+window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+    });
+});
+</script>
+
+</body>
+</html>
